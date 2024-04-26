@@ -3,5 +3,5 @@
 	System.out.println("session.invalidate()" +  session.getId());
 	session.invalidate();	// 세션 초기화(포맷)
 	System.out.println("session.invalidate()" +  session.getId());
-	response.sendRedirect("/shop/emp/empLoginForm.jsp");
+	response.sendRedirect("/shop/customer/mainShop.jsp");
 %>

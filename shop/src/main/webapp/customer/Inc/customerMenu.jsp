@@ -53,10 +53,12 @@
 %>
   	<li style="float:right"><a class="active" href="/shop/customer/addCustomerForm.jsp">회원가입</a></li>
   	<li style="float:right"><a class="active" href="/shop/customer/customerLoginForm.jsp">로그인</a></li>
+  	<li style="float:right"><a class="active" href="/shop/emp/empLoginForm.jsp">관리자 로그인</a></li>
     	
 <%
   	}
 %> 
+	
   </ul>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 

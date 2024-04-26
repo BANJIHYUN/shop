@@ -2,6 +2,13 @@
 <%@ page import = "java.sql.*"%>
 <%@ page import = "java.util.*" %>
 <%
+	// 인증 분기 세션 변수 이름 : loginEmp
+	if(session.getAttribute("loginEmp") == null){
+		response.sendRedirect("/shop/emp/empLoginForm.jsp");
+		return;
+	}
+%>
+<%
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/shop", "root", "java1234");
 	Class.forName("org.mariadb.jdbc.Driver");
 	PreparedStatement stmt = null;

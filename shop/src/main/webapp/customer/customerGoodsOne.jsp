@@ -75,6 +75,17 @@
 		}
 	%>
 	<a href="/shop/customer/customerGoodsList.jsp" class="btn btn-danger">취소</a>
-	<a href="/shop/order/orderForm.jsp" class="btn btn-danger">주문하기</a>
+	<%
+		if(session.getAttribute("loginCustomer") == null){
+	%>
+		<a href="/shop/customer/customerLoginForm.jsp" class="btn btn-danger">주문하기</a>
+	<%
+		}else{
+	%>
+		<a href="/shop/order/orderForm.jsp" class="btn btn-danger">주문하기</a>
+	<%
+		}
+	%>
+	
 </body>
 </html>
