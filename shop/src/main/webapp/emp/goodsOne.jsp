@@ -5,6 +5,9 @@
 	
 	System.out.println("goods_no: " + goods_no);
 	
+	String category = request.getParameter("category");
+	System.out.println("category: " + category);
+	
 	String sql = "select goods_no, category, emp_id, goods_title, filename, goods_content, goods_price, goods_amount, update_date from goods where goods_no = ?";
 	
 	Class.forName("org.mariadb.jdbc.Driver");

@@ -104,6 +104,38 @@ public class CustomerDAO {
 		return row5;
 	}
 	
+		public static ArrayList<HashMap<String, Object>> CuGoodsOne( // 메소드 이름
+			 int goods_no) throws Exception {
+		ArrayList<HashMap<String, Object>> GoodsOne =
+				new ArrayList<HashMap<String, Object>>();
+
+		Connection conn6 = DBHelper.getConnection();
+		String sql6 = "select goods_no, category, filename, goods_title, "
+				+ "goods_content , goods_price ,goods_amount "
+				+ "from goods where goods_no= ? ";
+		PreparedStatement stmt = conn6.prepareStatement(sql6);
+		stmt.setInt(1, goods_no);
+		
+
+		ResultSet rs = stmt.executeQuery();
+		if (rs.next()) {
+			HashMap<String, Object> m6 = new HashMap<String, Object>();
+
+			m6.put("goods_no", rs.getInt("goods_no"));
+			m6.put("category", rs.getString("category"));			
+			m6.put("filename", rs.getString("filename"));
+			m6.put("goods_title", rs.getString("goods_title"));
+			m6.put("goods_content", rs.getString("goods_content"));
+			m6.put("goods_price", rs.getInt("goods_price"));
+			m6.put("goods_amount", rs.getInt("goods_amount"));
+			
+			GoodsOne.add(m6);
+		}
+		conn6.close();
+		return GoodsOne;
+	}
+		
+	
 	/*
 	 * public static ArrayList<HashMap<String, Object>> customerGoodsList(int
 	 * goods_no, String category, String goods_title, String filename, String

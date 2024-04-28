@@ -4,6 +4,24 @@
 <%
 	HashMap<String, Object> loginMember = (HashMap<String, Object>)(session.getAttribute("loginCustomer"));
 %>
+<%
+	int goods_no = Integer.parseInt(request.getParameter("goods_no"));
+	System.out.println("goods_no: " + goods_no);
+	
+	int goods_price = Integer.parseInt(request.getParameter("goods_price"));
+	int buy_amount = Integer.parseInt(request.getParameter("buy_amount"));
+	
+	int total_price = goods_price * buy_amount;
+	String sql = "";
+	
+	Class.forName("org.mariadb.jdbc.Driver");
+	Connection conn = null;
+	PreparedStatement stmt = null;
+	ResultSet rs = null;
+
+	conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/shop", "root", "java1234");
+	
+%> 
 
 <!DOCTYPE html>
 <html>
@@ -14,10 +32,10 @@
 <body>
 	<h1>주문하기</h1>
 	<!-- form post로 보내기  -->
-	<form method ="post" action="/shop/order/orderAction.jsp">
+	<form method ="post" action="/shop/customer/orderAction.jsp">
 		<div>
 			물건 No:
-			 <input type ="number" name ="goods_no" readonly="readonly"> 
+			 <input type ="number" name ="goods_no" value= "<%=(goods_no)%>" readonly="readonly"> 
 		</div>		
 		<div>
 			이메일:
@@ -34,11 +52,11 @@
 		<hr>
 		<div>
 			물건 개수:
-			 <input type="number" name = "cu_amount" > 
+			 <input type="number" name = "buy_amount"> 
 		</div>
 		<div>
 			물건 총합: 
-			<input type ="number" name="cu_totalPrice" > 
+			<input type ="number" name="cu_totalPrice" value="<%=(String)("goods_price")%>"> 
 		</div>
 		<button type="submit">주문하기</button>
 	</form>

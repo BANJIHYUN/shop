@@ -141,5 +141,36 @@ public class EmpDAO {
 		return list;
 
 	}
+	//empOne 정보보기
+	public static ArrayList<HashMap<String, Object>> empOne(String empId, String emp_name, int grade)throws Exception{
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql2 = "SELECT emp_id empId, emp_name, emp_job, hire_date, active FROM emp WHERE emp_id = ? AND emp_name = ? AND grade = ?";
+		PreparedStatement stmt2 = null;
+		ResultSet rs2 = null; 
+		stmt2 = conn.prepareStatement(sql2);
+		stmt2.setString(1, empId);
+		stmt2.setString(2, emp_name);
+		stmt2.setInt(3, grade);
+		
+		rs2 = stmt2.executeQuery();
+		
+		ArrayList<HashMap<String, Object>> empList = new ArrayList<HashMap<String, Object>>();
+		
+		while(rs2.next()){
+			HashMap<String, Object> list = new HashMap<String, Object>();
+			list.put("empId", rs2.getString("empid"));
+			list.put("emp_name", rs2.getString("emp_name"));
+			list.put("emp_job", rs2.getString("emp_job"));
+			list.put("hire_date", rs2.getString("hire_date"));
+			list.put("active", rs2.getString("active"));
+			empList.add(list);
+		}
+		
+		conn.close();
+		return empList;
+	}
+	
 	
 }

@@ -11,6 +11,8 @@
 <%
 	String emp_id = request.getParameter("emp_id");
 	System.out.println("emp_id: " + emp_id);
+	String emp_name = request.getParameter("emp_name");
+	System.out.println("emp_name: " + emp_name);
 	
 	String sql = "";
 	

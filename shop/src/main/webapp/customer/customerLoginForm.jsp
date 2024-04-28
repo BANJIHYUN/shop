@@ -30,7 +30,7 @@
 	    <input type="password" class="form-control" placeholder="Enter password" name="pw">
 	  </div>
 	  <button type="submit" class="btn btn-primary">로그인</button>
-	  <a href="/shop/customer/mainShop.jsp"><button type="button" class="btn btn-primary">취소</button></a>
+	  <a href="/shop/customer/index.html"><button type="button" class="btn btn-primary">취소</button></a>
 	</form>
 	</div>
 	<div class="col"></div>

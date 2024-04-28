@@ -44,17 +44,18 @@
 	System.out.println("lastPage " + lastPage);
 %>
 <%
-	String emp_name = request.getParameter("emp_name");
+	
+	
 	Class.forName("org.mariadb.jdbc.Driver");
 	
 	String sql = "select emp_id, emp_name, emp_job, hire_date, active from emp order by emp_name desc LIMIT ?, ?";
 	PreparedStatement stmt = null;
-	System.out.println(stmt);
-	ResultSet rs = null;
+	ResultSet rs5 = null;
 	stmt = conn.prepareStatement(sql);
 	stmt.setInt(1, (currentPage-1)*rowPerPage);
 	stmt.setInt(2, rowPerPage);
-	rs = stmt.executeQuery();
+	rs5 = stmt.executeQuery();
+	System.out.println(stmt);
 	//String sql = null;
 	/* if(emp_name == null) {
 		sql = "select emp_id, emp_name, emp_job, hire_date from emp order by emp_name desc";
@@ -75,19 +76,18 @@
 	ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 	
 	// rs -> arrayList
-	while(rs.next()){
+	while(rs5.next()){
 		HashMap<String, Object> m = new HashMap<String, Object>();
-		m.put("emp_id", rs.getString("emp_id"));
-		m.put("emp_name", rs.getString("emp_name"));
-		m.put("emp_job", rs.getString("emp_job"));
-		m.put("hire_date", rs.getString("hire_date"));
-		m.put("active", rs.getString("active"));
+		m.put("emp_id", rs5.getString("emp_id"));
+		m.put("emp_name", rs5.getString("emp_name"));
+		m.put("emp_job", rs5.getString("emp_job"));
+		m.put("hire_date", rs5.getString("hire_date"));
+		m.put("active", rs5.getString("active"));
 		list.add(m);
 	} 
 	
 	// JDBC 사용 끝나면 자원 반납.
-	
-	
+
 %>
 
 <%
@@ -127,7 +127,7 @@
 		%>
 
 			<tr>
-				<td><a href="/shop/emp/empOne.jsp?emp_id=<%=(String)(m.get("emp_id"))%>"><%=(String)(m.get("emp_id"))%></a></td>
+				<td><%-- <a href="/shop/emp/empOne.jsp?emp_id=<%=(String)(m.get("emp_id"))%> && emp_name=<%=(String)(m.get("emp_name"))%>"> --%><%=(String)(m.get("emp_id"))%></a></td>
 				<td><%=(String)(m.get("emp_name")) %></td>
 				<td><%=(String)(m.get("emp_job")) %></td>
 				<td><%=(String)(m.get("hire_date")) %></td>
