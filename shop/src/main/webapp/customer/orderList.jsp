@@ -25,6 +25,15 @@
 		HashMap<String, Object> m = new HashMap<String, Object>();
 		m.put("orders_no", rs.getInt("orders_no"));
 		m.put("mail", rs.getString("mail"));
+		m.put("name", rs.getString("name"));
+		m.put("goods_no", rs.getInt("goods_no"));
+		m.put("total_amount", rs.getInt("total_amount"));
+		m.put("total_price", rs.getInt("total_price"));
+		m.put("address", rs.getString("address"));
+		m.put("state", rs.getString("state"));
+		m.put("update_date", rs.getString("update_date"));
+		m.put("create_date", rs.getString("create_date"));
+		
 		orderList.add(m);
 	}
 	System.out.println(orderList);
@@ -44,47 +53,52 @@
 				for(HashMap<String, Object> m : orderList){
 			%>
 						<tr>
-							<th>주문 번호: </th>
+							<th>주문 번호</th>
 							<td><%=(Integer)m.get("orders_no")%></td>
 						</tr>
 						<tr>
-							<th>이메일 :</th>
-							<td><%=(String)m.get("email")%></td>
+							<th>이메일</th>
+							<td><%=(String)m.get("mail")%></td>
 						</tr>
 						<tr>
-							<th>물건 번호 :</th>
-							<td><%=(String)m.get("email")%></td>
+							<th>이름</th>
+							<td><%=(String)m.get("name")%></td>
 						</tr>
 						<tr>
-							<th>물건 총 개수: </th>
-							<td><%=(String)m.get("total_amount")%></td>
+							<th>물건 번호</th>
+							<td><%=(Integer)m.get("goods_no")%></td>
 						</tr>
 						<tr>
-							<th>물건 총 값: </th>
-							<td><%=(String)m.get("total_price")%></td>
+							<th>물건 총 개수</th>
+							<td><%=(Integer)m.get("total_amount")%></td>
 						</tr>
 						<tr>
-							<th>주소: </th>
+							<th>물건 총 값</th>
+							<td><%=(Integer)m.get("total_price")%></td>
+						</tr>
+						<tr>
+							<th>주소</th>
 							<td><%=(String)m.get("address")%></td>
 						</tr>
 						<tr>
-							<th>주문 시간: </th>
-							<td><%=(String)m.get("ㅁㅇ")%></td>
+							<th>상태</th>
+							<td><%=(String)m.get("state")%></td>
 						</tr>
 						<tr>
-							<th>주문 시간: </th>
-							<td><%=(String)m.get("ㅁㅇ")%></td>
+							<th>주문 시간 </th>
+							<td><%=(String)m.get("update_date")%></td>
+						</tr>
+						<tr>
+							<th>생성 시간 </th>
+							<td><%=(String)m.get("create_date")%></td>
 						</tr>
 						
-						<tr>
-							<td><a href="/shop/emp/updateCategroyForm.jsp?category=<%=(String)m.get("category")%>"><button type="button">수정</button></a></td>
-							<td><a href="/shop/emp/deleteCategoryListForm.jsp?category=<%=(String)m.get("category")%>"><button type="button">삭제</button></a></td>
-						</tr>
 			<%
 				}
 			%>
+			
 		</table>	
-							<a href="/shop/emp/addCategoryForm.jsp"><button type="button">카테고리 추가하기</button></a>
-							<a href="/shop/emp/goodsList.jsp"><button type="button">취소</button></a>
+		
+						<a href="/shop/customer/customerGoodsList.jsp"><button type="button">취소</button></a>
 </body>
 </html>

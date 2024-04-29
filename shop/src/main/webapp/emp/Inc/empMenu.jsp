@@ -25,6 +25,8 @@
 	
 	<a href="/shop/emp/customerList.jsp">고객리스트</a>
 	
+	<a href="/shop/customer/orderList.jsp">고객주문리스트</a>
+	
 	
 	<a href="/shop/emp/empOne.jsp?emp_id=<%=(String)(loginMember.get("empId"))%>"><%=(String)(loginMember.get("empId"))%>님  반갑습니다.</a>
 	

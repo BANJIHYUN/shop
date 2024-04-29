@@ -105,14 +105,14 @@ public class CustomerDAO {
 	}
 	
 		public static ArrayList<HashMap<String, Object>> CuGoodsOne( // 메소드 이름
-			 int goods_no) throws Exception {
+			 int goods_no, int goods_price) throws Exception {
 		ArrayList<HashMap<String, Object>> GoodsOne =
 				new ArrayList<HashMap<String, Object>>();
 
 		Connection conn6 = DBHelper.getConnection();
 		String sql6 = "select goods_no, category, filename, goods_title, "
-				+ "goods_content , goods_price ,goods_amount "
-				+ "from goods where goods_no= ? ";
+				+ "goods_content , goods_price, goods_amount "
+				+ "from goods where goods_no= ?";
 		PreparedStatement stmt = conn6.prepareStatement(sql6);
 		stmt.setInt(1, goods_no);
 		
@@ -135,6 +135,53 @@ public class CustomerDAO {
 		return GoodsOne;
 	}
 		
+		public static ArrayList<HashMap<String, Object>> Cuorders( // 메소드 이름
+				 int goods_no, int goods_price, int total_amount) throws Exception {
+			ArrayList<HashMap<String, Object>> Cuorders =
+					new ArrayList<HashMap<String, Object>>();
+
+			Connection conn7 = DBHelper.getConnection();
+			String sql7 = "select goods_no, goods_price, total_amount " 
+					+ "from orders where goods_no= ? ";
+			PreparedStatement stmt7 = conn7.prepareStatement(sql7);
+			stmt7.setInt(1, goods_no);
+			
+
+			ResultSet rs7 = stmt7.executeQuery();
+			if (rs7.next()) {
+				HashMap<String, Object> m7 = new HashMap<String, Object>();
+				m7.put("goods_no", rs7.getInt("goods_no"));
+				m7.put("goods_price", rs7.getInt("goods_price"));
+				m7.put("total_amount", rs7.getInt("total_amount"));
+				
+				Cuorders.add(m7);
+			}
+			conn7.close();
+			return Cuorders;
+		}
+		
+		public static int addOrders(String mail, int goods_no, String name, String address, int total_amount, int total_price, String state) throws Exception{
+			int row8 = 0;
+			
+			Connection conn8 = null;
+			conn8 = DBHelper.getConnection();
+			
+			String sql8 = "insert into orders(mail, name, goods_no, total_amount, total_price, address, state, update_date, create_date) values(?, ?, ?, ?, ?, ?, '주문완료', NOW(), NOW())";
+			PreparedStatement stmt8 = null;
+			stmt8 = conn8.prepareStatement(sql8);
+			stmt8.setString(1, mail);
+			stmt8.setString(2, name);
+			stmt8.setInt(3, goods_no);
+			stmt8.setInt(4, total_amount);
+			stmt8.setInt(5, total_price);
+			stmt8.setString(6, address);
+			stmt8.setString(7, state);
+			row8 = stmt8.executeUpdate();
+				
+			conn8.close();
+			return row8;	
+			
+		}
 	
 	/*
 	 * public static ArrayList<HashMap<String, Object>> customerGoodsList(int

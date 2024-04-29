@@ -207,7 +207,7 @@
         
       <jsp:include page="/customer/Inc/customerMenu.jsp"></jsp:include>
 </ul> --%>
- 				  <header class="bg-dark py-5">
+<%--  				  <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">E-SPORT</h1>
@@ -419,7 +419,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --%>
 
 <div class="container">
 		<div class="row">
@@ -433,10 +433,8 @@
 		<span><%=currentPage%>페이지</span><br>
 		<tr>
 			<th>goods_no</th>
-			<th>category</th>
 			<th>goods_title</th>
 			<th>filename</th>
-			<th>goods_content</th>
 			<th>goods_price</th>
 		</tr>
 		<div>굿즈 종류</div><br>
@@ -460,11 +458,9 @@
 					for(HashMap<String, Object> TL :totalList){
 			%>
 			<tr>
-				<td><a href="/shop/customer/customerGoodsOne.jsp?goods_no=<%=(Integer)(TL.get("goods_no"))%>"><%=(Integer)(TL.get("goods_no"))%></a></td>
-				<td><%=(String)(TL.get("category"))%></td>
+				<td><a href="/shop/customer/customerGoodsOne.jsp?goods_no=<%=(TL.get("goods_no"))%>&goods_price=<%=(TL.get("goods_price"))%>"><%=(TL.get("goods_no"))%></a></td>
 				<td><%=(String)(TL.get("goods_title"))%></td>
 				<td><img src="/shop/upload/<%=(String)(TL.get("filename"))%>"></td>
-				<td><%=(String)(TL.get("goods_content")) %></td>
 				<td><%=(String)(TL.get("goods_price")) %></td>
 			</tr>
 		<%
@@ -473,11 +469,9 @@
 				for(HashMap<String, Object> CL3 : categoryList3){
 		%>
 				<tr>
-				<td><a href="/shop/customer/customerGoodsOne.jsp?goods_no=<%=(Integer)(CL3.get("goods_no"))%>"><%=(Integer)(CL3.get("goods_no"))%></a></td>
-				<td><%=(String)(CL3.get("category"))%></a></td>
+				<td><a href="/shop/customer/customerGoodsOne.jsp?goods_no=<%=(CL3.get("goods_no"))%>&goods_price=<%=(CL3.get("goods_price"))%>"><%=(CL3.get("goods_no"))%></a></td>
 				<td><%=(String)(CL3.get("goods_title"))%></td>
 				<td><img src="/shop/upload/<%=(String)(CL3.get("filename"))%>"></td>
-				<td><%=(String)(CL3.get("goods_content")) %></td>
 				<td><%=(String)(CL3.get("goods_price")) %></td>
 				<td><input type="number" name="buy_amount">개</td>
 			</tr>

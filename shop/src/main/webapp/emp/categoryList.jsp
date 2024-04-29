@@ -13,7 +13,6 @@
 	HashMap<String, Object> loginMember = (HashMap<String, Object>)(session.getAttribute("loginEmp"));
 %>
 <%
-
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/shop", "root", "java1234");
 	Class.forName("org.mariadb.jdbc.Driver");
 	PreparedStatement stmt = null;
