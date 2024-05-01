@@ -19,13 +19,15 @@
 	stmt1.setString(1, email);
 	rs2 = stmt1.executeQuery();	
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style>
-				.card {
+		.card {
 		  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 		  max-width: 300px;
 		  margin: auto;
@@ -37,20 +39,6 @@
 		  color: grey;
 		  font-size: 18px;
 		}
-		
-/*  		button {
-		  border: none;
-		  outline: 0;
-		  display: inline-block;
-		  padding: 8px;
-		  color: white;
-		  background-color: #000;
-		  text-align: center;
-		  cursor: pointer;
-		  width: 10%;
-		  font-size: 18px;
-		  
-		}  */
 		
 		a {
 		  text-decoration: none;
@@ -89,21 +77,22 @@
 								gender: <%=rs1.getString("gender")%>
 							</div>
 							  <div style="margin: 24px 0;"> <br>
-							<%--  <%
-								if(order != null){
+							<%--   <%
+								if(orderList.size() == 0){
 							%>
-									 <a href="/shop/customer/orderList.jsp">주문정보 확인</a>
+									<a href="/shop/customer/orderList.jsp" style="hidden">주문정보 확인</a>
 							<%
 								}else{
 							%>
-									<a href="/shop/customer/orderList.jsp" style="hidden">주문정보 확인</a>
+									<a href="/shop/customer/orderList.jsp">주문정보 확인</a>
+									
 							<%	
 								}
 							%>  --%>
 							 
-							  <a href="/shop/customer/customerUpdateForm.jsp?email=<%=email%>"><button>회원 정보 수정</button></a>
-								<a href="/shop/customer/customerDeleteForm.jsp?email=<%=email%>"><button>회원 탈퇴</button></a>
-								<a href="/shop/customer/mainShop.jsp"><button>취소</button></a>
+							<a href="/shop/customer/customerUpdateForm.jsp?email=<%=email%>"><button>회원 정보 수정</button></a>
+							<a href="/shop/customer/customerDeleteForm.jsp?email=<%=email%>"><button>회원 탈퇴</button></a>
+							<a href="/shop/customer/mainShop.jsp"><button>취소</button></a>
 						<%	
 							}
 						%>

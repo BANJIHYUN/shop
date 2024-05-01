@@ -100,12 +100,12 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">T1</h5>
                                     <!-- Product price-->
-                                    $20
+                                   1500000
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/shop/customer/customerGoodsOne.jsp">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="http://localhost:8080/shop/customer/customerGoodsOne.jsp?goods_no=2&goods_price=150000">View options</a></div>
                             </div>
                         </div>
                     </div>

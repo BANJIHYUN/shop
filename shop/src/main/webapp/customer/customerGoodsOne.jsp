@@ -11,7 +11,7 @@
 	System.out.println("goods_price: " + goods_price);
 	ArrayList<HashMap<String, Object>> CustomerGoodsOne = CustomerDAO.CuGoodsOne(goods_no, goods_price);
 %>
-<%
+<%-- <%
 	Class.forName("org.mariadb.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/shop", "root", "java1234");
 	// 부모글의 댓글리스트 
@@ -21,7 +21,7 @@
 	stmt2 = conn.prepareStatement(sql2);
 	stmt2.setInt(1, goods_no);
 	rs2 = stmt2.executeQuery();
-%>
+%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -30,6 +30,33 @@
 	<title>긋즈 상세 정보</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<style>
+		.star-rating {
+      display: flex;
+    }
+
+    .star {
+      appearance: none;
+      padding: 1px;
+    }
+
+    .star::after {
+      content: '☆';
+      color: hsl(60, 80%, 45%);
+      font-size: 20px;
+    }
+
+    .star:hover::after,
+    .star:has(~ .star:hover)::after,
+    .star:checked::after,
+    .star:has(~ .star:checked)::after {
+      content: '★';
+    }
+
+    .star:hover ~ .star::after {
+      content: '☆';
+    }
+	</style>
 </head>
 <body>
 	<h1>상세 정보</h1>
@@ -79,16 +106,28 @@
 		}
 	%>
 	<hr>
+	<%
+		if(session.getAttribute("loginCustomer") != null){
+	%>
 	<h1 style="color:#990085;">REVIEW</h1>
-			<form method="post" action="/shop/customer/cucomment.jsp">
-				<input type="hidden" name ="goods_no" value="<%=goods_no%>">
-				<textarea rows="3" cols="50" name="memo"  style="background-color: #E8D9FF; width: 100%;"></textarea>
-				<div>
-				<button type="submit">등록</button>
-				</div>
+			<form method="post" action="/shop/customer/cuComment.jsp">
+					<input type="hidden" name ="goods_no" value="<%=goods_no%>">
+					<textarea rows="3" cols="50" name="memo" style="background-color: #E8D9FF; width: 100%;"></textarea>
+						 <div class="star-rating">
+						    <input type="radio" class="star" value="1">
+						    <input type="radio" class="star" value="2">
+						    <input type="radio" class="star" value="3">	
+						    <input type="radio" class="star" value="4">
+						    <input type="radio" class="star" value="5">
+	  					</div>
+					<div>
+						<button type="submit">등록</button>
+					</div>
 			</form>	
-			<br>
-			<!-- 댓글리스트 -->
+	<%
+		}
+	%>
+<%-- 			<!-- 댓글리스트 -->
 			<h1 style="color:#990085;">댓글</h1>
 			<%
 				while(rs2.next()){
@@ -114,7 +153,7 @@
 					<div>
 						<a href="/shop/customer/customerList.jsp">취소</a>
 					</div>
-			
+			 --%>
 	
 	
 </body>
