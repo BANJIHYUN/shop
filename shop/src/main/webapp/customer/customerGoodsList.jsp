@@ -202,7 +202,7 @@
             </div>
         </nav>
         
-
+ 
 <%-- <ul class="ul_1">
         
       <jsp:include page="/customer/Inc/customerMenu.jsp"></jsp:include>
@@ -279,7 +279,7 @@
 					}
 				%>	
 
- 			
+ 		
 <%-- <div class="container">
 		<div class="row">
 			<div class="col"></div>
@@ -400,6 +400,10 @@
 			}
         </script> -->
         
-	
+		<footer class="py-5 bg-dark">
+            <div class="container">
+            	<p class="m-0 text-center text-white">Copyright &copy; Your Website 2024</p>
+            </div>
+        </footer>	
 </body>
 </html>

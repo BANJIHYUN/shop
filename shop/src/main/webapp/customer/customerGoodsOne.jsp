@@ -106,8 +106,8 @@
 		}
 	%>
 	<hr>
-	<%
-		if(session.getAttribute("loginCustomer") != null){
+	<%-- <%
+		if(orders.state=="배송완료"){
 	%>
 	<h1 style="color:#990085;">REVIEW</h1>
 			<form method="post" action="/shop/customer/cuComment.jsp">
@@ -126,7 +126,7 @@
 			</form>	
 	<%
 		}
-	%>
+	%> --%>
 <%-- 			<!-- 댓글리스트 -->
 			<h1 style="color:#990085;">댓글</h1>
 			<%
@@ -154,7 +154,5 @@
 						<a href="/shop/customer/customerList.jsp">취소</a>
 					</div>
 			 --%>
-	
-	
 </body>
 </html>
