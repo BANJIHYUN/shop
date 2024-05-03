@@ -1,3 +1,5 @@
+
+<%@page import="shop.dao.OrdersDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*"%>
 <%
@@ -18,6 +20,18 @@
 	ResultSet rs2 = null;
 	stmt1.setString(1, email);
 	rs2 = stmt1.executeQuery();	
+%>
+
+<%
+	String state = request.getParameter("state");
+	String mail = request.getParameter("mail");
+	System.out.println("state: " + state);
+	
+	String sql3 = "select * from orders where mail=?";
+	PreparedStatement stmt3 = conn.prepareStatement(sql3);
+	ResultSet rs3 = null;
+	stmt3.setString(1, mail);
+	rs3 = stmt3.executeQuery();	
 %>
 
 
@@ -77,19 +91,18 @@
 								gender: <%=rs1.getString("gender")%>
 							</div>
 							  <div style="margin: 24px 0;"> <br>
-							<%--   <%
-								if(orderList.size() == 0){
-							%>
-									<a href="/shop/customer/orderList.jsp" style="hidden">주문정보 확인</a>
 							<%
-								}else{
+								if(rs3.next()){
 							%>
-									<a href="/shop/customer/orderList.jsp">주문정보 확인</a>
-									
-							<%	
-								}
-							%>  --%>
-							 
+								<a href="/shop/customer/CuOrderList.jsp?email=<%=email%>">주문정보 확인</a>
+							<%
+							} else{
+							%>
+								<div>주문 정보가 없습니다.</div>
+							<%
+							}
+							%> 
+							
 							<a href="/shop/customer/customerUpdateForm.jsp?email=<%=email%>"><button>회원 정보 수정</button></a>
 							<a href="/shop/customer/customerDeleteForm.jsp?email=<%=email%>"><button>회원 탈퇴</button></a>
 							<a href="/shop/customer/mainShop.jsp"><button>취소</button></a>

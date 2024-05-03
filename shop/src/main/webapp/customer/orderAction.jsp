@@ -3,7 +3,7 @@
 <%@ page import = "java.sql.*"%>
 <%@page import="java.net.*"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="shop.dao.CustomerDAO"%>
+<%@page import="shop.dao.*"%>
 <%
 	HashMap<String, Object> loginMember = (HashMap<String, Object>)(session.getAttribute("loginCustomer"));
 %>
@@ -27,6 +27,7 @@
 	
 	if(CO == 1){
 			System.out.println("주문 성공");
+			GoodsDAO.updateGoodsAmount(total_amount, goods_no);
 			response.sendRedirect("/shop/customer/orderList.jsp");	
 	}else{
 		System.out.println("주문 실패");

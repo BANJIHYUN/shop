@@ -143,6 +143,18 @@ public class GoodsDAO {
 		return row3;
 	  }
 	 
-		/* public static HashMap<String, > */
+		public static int updateGoodsAmount(int total_amount, int goods_no) throws Exception{
+			int row4 = 0;
+			String sql4 = "update goods set goods_amount = goods_amount - ? where goods_no =?";
+			
+			Connection conn4 = DBHelper.getConnection();
+			PreparedStatement stmt4 = null;
+			stmt4 = conn4.prepareStatement(sql4);
+			stmt4.setInt(1, total_amount);
+			stmt4.setInt(2, goods_no);
+			row4 = stmt4.executeUpdate();
+			
+			return row4;
+		}
 	
 }
