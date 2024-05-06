@@ -28,9 +28,9 @@
 	if(CO == 1){
 			System.out.println("주문 성공");
 			GoodsDAO.updateGoodsAmount(total_amount, goods_no);
-			response.sendRedirect("/shop/customer/orderList.jsp");	
+			response.sendRedirect("/shop/customer/CuOrderList.jsp");	
 	}else{
 		System.out.println("주문 실패");
-		response.sendRedirect("/shop/customer/orderList.jsp");
+		response.sendRedirect("/shop/customer/customerGoodsList.jsp");
 	}
 %>

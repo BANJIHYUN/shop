@@ -18,15 +18,13 @@
 	<!-- 카테고리 -->
 	<a href="/shop/emp/categoryList.jsp">카테고리 관리</a>
 	
-	<a href="/shop/emp/goodsList.jsp">상품 관리</a>
-	
+	<a href="/shop/emp/goodsList.jsp">상품 관리</a>	
 	
 	<a href="/shop/emp/AddgoodsForm.jsp">상품등록</a>
 	
 	<a href="/shop/emp/customerList.jsp">고객리스트</a>
 	
-	<a href="/shop/customer/orderList.jsp">고객주문리스트</a>
-	
+	<a href="/shop/emp/empCheck_cuorderList.jsp">고객주문리스트</a>
 	
 	<a href="/shop/emp/empOne.jsp?emp_id=<%=(String)(loginMember.get("empId"))%>"><%=(String)(loginMember.get("empId"))%>님  반갑습니다.</a>
 	

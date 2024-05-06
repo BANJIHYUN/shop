@@ -1,9 +1,12 @@
-<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="shop.dao.OrdersDAO"%>
+<%@ page import ="java.util.*" %>
 <%
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	HashMap<String,Object>  loginCustomer = (HashMap<String,Object>) (session.getAttribute("loginCustomer"));
 %>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -42,60 +42,69 @@
 	<title>Insert title here</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  	<style>
+  		
+		table, th, td {
+		  border: 1px solid black;
+		}
+
+  	</style>
 </head>
 <body>
-	<h1>주문 리스트</h1>	
+	<h1>주문 리스트</h1>
+			
 			<%
 				for(HashMap<String, Object> m : orderList){
 			%>
-	<table border="1">
-						<tr>
+			
+						<table border="1">
+						<tr bgcolor="pink">
 							<th>주문 번호</th>
-							<td><%=(Integer)m.get("orders_no")%></td>
-						</tr>
-						<tr>
 							<th>이메일</th>
-							<td><%=(String)m.get("mail")%></td>
-						</tr>
-						<tr>
 							<th>이름</th>
-							<td><%=(String)m.get("name")%></td>
-						</tr>
-						<tr>
 							<th>물건 번호</th>
-							<td><%=(Integer)m.get("goods_no")%></td>
-						</tr>
-						<tr>
 							<th>물건 총 개수</th>
-							<td><%=(Integer)m.get("total_amount")%></td>
-						</tr>
-						<tr>
 							<th>물건 총 값</th>
-							<td><%=(Integer)m.get("total_price")%></td>
-						</tr>
-						<tr>
 							<th>주소</th>
-							<td><%=(String)m.get("address")%></td>
-						</tr>
-						<tr>
 							<th>상태</th>
-							<td><%=(String)m.get("state")%></td>
-						</tr>
-						<tr>
 							<th>주문 시간 </th>
-							<td><%=(String)m.get("update_date")%></td>
-						</tr>
-						<tr>
 							<th>생성 시간 </th>
+						</tr>	
+						<tr>
+							<td><%=(Integer)m.get("orders_no")%></td>
+							
+							<td><%=(String)m.get("mail")%></td>
+							
+							<td><%=(String)m.get("name")%></td>
+							
+							<td><%=(Integer)m.get("goods_no")%></td>
+							
+							<td><%=(Integer)m.get("total_amount")%></td>
+							
+							<td><%=(Integer)m.get("total_price")%></td>
+							
+							<td><%=(String)m.get("address")%></td>
+							
+							<td>
+								<form method="post" action="/shop/emp/cuOrderUpdateList.jsp?orders_no=<%=(Integer)m.get("orders_no")%>">
+									<select name="state">
+										<option value="<%=(String)(m.get("state"))%>"><%=(String)(m.get("state"))%></option>
+										<option value="배송중">배송중</option>
+										<option value="배송완료">배송완료</option>
+									</select>
+									<button type="submit">상태 변경하기</button>
+								</form>
+							</td>
+							
+							<td><%=(String)m.get("update_date")%></td>
 							<td><%=(String)m.get("create_date")%></td>
 						</tr>
-						
-		</table>	
+					</table>	
 			<%
 				}
 			%>
 			
 		
-		<a href="/shop/customer/customerGoodsList.jsp"><button type="button">취소</button></a>
+		<a href="/shop/emp/empList.jsp"><button type="button">취소</button></a>
 </body>
 </html>

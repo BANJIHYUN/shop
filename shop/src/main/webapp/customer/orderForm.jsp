@@ -13,9 +13,13 @@
 	System.out.println("goods_price: " + goods_price);
 	
 	ArrayList<HashMap<String, Object>> CustomerGoodsOne = CustomerDAO.CuGoodsOne(goods_no, goods_price);
+	
+	int total_amount = Integer.parseInt(request.getParameter("total_amount"));
+	System.out.println("goods_price: " + goods_price);
+	
+	int total_price = 0;
+	total_price = goods_price * total_amount;
 %> 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,13 +47,17 @@
 			<textarea rows="7" cols="50" name = "address"></textarea>
 		</div>
 		<hr>
-		<div>
+		<div> 
 			수량:
-			 <input type="number" name = "total_amount"> 
+			 <input type="number" name = "total_amount" value="<%=total_amount%>"> 
 		</div>
 		<div>
-			결제 금액: 
-			<input type ="number" name="total_price" value="<%=goods_price%>"> 
+			물건 금액: 
+			<input type ="number" name="goods_price" value="<%=goods_price%>"> 
+		</div>
+		<div>
+			총액: 
+			<input type ="number" name="total_price" value="<%=total_price%>"> 
 		</div>
 		<button type="submit">주문하기</button>
 	</form>

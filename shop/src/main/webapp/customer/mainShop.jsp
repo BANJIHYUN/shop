@@ -6,7 +6,6 @@
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	HashMap<String,Object>  loginCustomer = (HashMap<String,Object>) (session.getAttribute("loginCustomer"));
 %> 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -307,8 +306,6 @@
 				document.querySelector('#subNavbar').style.display = 'none'
 			}
         </script>
-
-
 
 
 

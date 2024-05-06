@@ -229,7 +229,7 @@
 						<br>
 						<br>
 						<!-- 카테고리 전체 리스트 -->
-         			<div style="float:left;">				
+         			<div style="float:left;"q>				
 						<%	
 							if(category == null){
 								for(HashMap<String, Object> TL :totalList){	
@@ -400,10 +400,10 @@
 			}
         </script> -->
         
-		<footer class="py-5 bg-dark">
+<!-- 		<footer class="py-5 bg-dark">
             <div class="container">
             	<p class="m-0 text-center text-white">Copyright &copy; Your Website 2024</p>
             </div>
-        </footer>	
+        </footer>	 -->
 </body>
 </html>

@@ -10,7 +10,7 @@ public class OrdersDAO {
 		Connection conn1 = null;
 		conn1 = DBHelper.getConnection();
 		
-		String sql1 = "inset into orders(goods_no, mail, name, address, total_amount, total_price, state) values(?, ?, ?, ?, ?, ?, '주문완료')";
+		String sql1 = "insert into orders(goods_no, mail, name, address, total_amount, total_price, state) values(?, ?, ?, ?, ?, ?, '주문완료')";
 		PreparedStatement stmt1 = null;
 		stmt1 = conn1.prepareStatement(sql1);
 		stmt1.setInt(1, goods_no);
@@ -26,6 +26,23 @@ public class OrdersDAO {
 		conn1.close();
 
 		return row1;
+	}
+	
+	public static int UpdateOrderList(int orders_no, String state) throws Exception{
+		int row2 = 0;
+		Connection conn2 = null;
+		conn2 = DBHelper.getConnection();
+		
+		String sql2 = "update orders set state =? where orders_no= ?";
+		PreparedStatement stmt2 = null;
+		stmt2 = conn2.prepareStatement(sql2);
+		stmt2.setString(1, state);
+		stmt2.setInt(2, orders_no);
+		row2 = stmt2.executeUpdate();
+		
+		conn2.close();
+
+		return row2;
 	}
 
 }

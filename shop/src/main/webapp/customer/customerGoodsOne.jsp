@@ -3,6 +3,7 @@
 <%@ page import = "java.util.*"%>
 <%@ page import="java.net.*"%>
 <%@page import="shop.dao.CustomerDAO"%>
+<%@page import="shop.dao.commentDAO"%>
 
 <%
 	int goods_no = Integer.parseInt(request.getParameter("goods_no"));
@@ -10,6 +11,14 @@
 	int goods_price = Integer.parseInt(request.getParameter("goods_price"));
 	System.out.println("goods_price: " + goods_price);
 	ArrayList<HashMap<String, Object>> CustomerGoodsOne = CustomerDAO.CuGoodsOne(goods_no, goods_price);
+%>
+
+<%
+	// 인증 분기 세션 변수 이름 : loginCustomer
+	HashMap<String,Object>  loginCustomer = (HashMap<String,Object>) (session.getAttribute("loginCustomer"));
+%>
+<%
+	ArrayList<HashMap<String,Object>> addComment = commentDAO.addcomment(goods_no);
 %>
 <%-- <%
 	Class.forName("org.mariadb.jdbc.Driver");
@@ -93,26 +102,38 @@
 		<%
 			}
 		%>
-	<a href="/shop/customer/customerGoodsList.jsp" class="btn btn-danger">취소</a>
 	<%
 		if(session.getAttribute("loginCustomer") == null){
 	%>
+		<a href="/shop/customer/customerGoodsList.jsp" class="btn btn-danger">취소</a>
 		<a href="/shop/customer/customerLoginForm.jsp" class="btn btn-danger">주문하기</a>
 	<%
 		}else{
 	%>
-		<a href='/shop/customer/orderForm.jsp?goods_no=<%=goods_no%>&goods_price=<%=goods_price%>' class="btn btn-danger">주문하기</a>
+		<form method ="post" action="/shop/customer/orderForm.jsp?goods_no=<%=goods_no%>&goods_price=<%=goods_price%>">
+							수량:
+							<input type="number" name ="total_amount">
+							<a href="/shop/customer/customerGoodsList.jsp" class="btn btn-danger">취소</a>
+							<button type="submit" class="btn btn-danger">주문하기</button>
+		</form>
 	<%
 		}
 	%>
+		
 	<hr>
-	<%-- <%
-		if(orders.state=="배송완료"){
+	<%
+		if(loginCustomer != null){
+			if(addComment.size() == 0){		
+	%>
+	<%
+			}else{
 	%>
 	<h1 style="color:#990085;">REVIEW</h1>
 			<form method="post" action="/shop/customer/cuComment.jsp">
 					<input type="hidden" name ="goods_no" value="<%=goods_no%>">
-					<textarea rows="3" cols="50" name="memo" style="background-color: #E8D9FF; width: 100%;"></textarea>
+					<div>
+	  					작성자: <input type="text" name="email" value=<%=(String)(loginCustomer.get("email"))%>>
+	  				</div>
 						 <div class="star-rating">
 						    <input type="radio" class="star" value="1">
 						    <input type="radio" class="star" value="2">
@@ -120,39 +141,18 @@
 						    <input type="radio" class="star" value="4">
 						    <input type="radio" class="star" value="5">
 	  					</div>
+	  					<textarea rows="3" cols="50" name="memo" style="background-color: #E8D9FF; width: 100%;"></textarea>
 					<div>
 						<button type="submit">등록</button>
 					</div>
 			</form>	
+		
+		<%
+					}
+		%>	
 	<%
 		}
-	%> --%>
-<%-- 			<!-- 댓글리스트 -->
-			<h1 style="color:#990085;">댓글</h1>
-			<%
-				while(rs2.next()){
-					System.out.println(rs2.getString("memo"));
-			%>
-				<hr>
-				<form method="post" action="./deleteCommentAction.jsp">
-					<input type="hidden" name ="commentno" value="<%=rs2.getString("commentno")%>">
-					<input type="hidden" name ="goods_no" value="<%=goods_no%>">
-				<div style="background-color: #E8D9FF;">댓글: <%=rs2.getString("memo")%></div>
-					<button type="submit">삭제</button>
-				</form>
-				<div>수정할 내용을 입력하세요.</div>
-				<form  method ="post" action ="./updateCommentAction.jsp">
-					<input type="hidden" name ="commentno" value="<%=rs2.getString("commentno")%>">
-					<input type="hidden" name ="goods_no" value="<%=goods_no%>">
-					<textarea rows="3" cols="50" name="memo"  style="background-color: #E8D9FF; width: 100%;"></textarea>
-					<button type="submit">수정</button>
-				</form>
-				<%
-				}
-				%>
-					<div>
-						<a href="/shop/customer/customerList.jsp">취소</a>
-					</div>
-			 --%>
+	%>
+			
 </body>
 </html>
